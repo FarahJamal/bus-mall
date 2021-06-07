@@ -4,20 +4,21 @@ background-color: bisque;
  #images{
     margin: auto;
     width: 60%;
-    border: 3px solid #73AD21;
-    padding: 400px;
     
  }
  #images img{
-width: 500px;
-height: 500px;
+width: 350px;
+height: 350px;
 }
-
+#div1{
+    margin: auto;
+    width: 60%;
+}
 select{
+    
     background-color: transparent;
-    border: none;
     padding: 20px;
-    margin: 0;
+    margin: auto;
     width: 20%;
     font-family: inherit;
     font-size: inherit;

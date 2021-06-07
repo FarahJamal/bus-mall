@@ -91,6 +91,9 @@ pressCount+=1;
     else if(event.target.id === 'right-img'){
         CategoryImg.allImg[right].votes++;
     }
+    else{
+        return;
+    }
     generateRandomPic();
     displayImg();
    
@@ -104,9 +107,10 @@ else{
 
     
     };
-    leftImgEl.removeEventListener('click',imageHandler);
+/*     leftImgEl.removeEventListener('click',imageHandler);
 centerImgEl.removeEventListener('click',imageHandler);
-rightImgEl.removeEventListener('click',imageHandler);
+rightImgEl.removeEventListener('click',imageHandler); */
+container.removeEventListener('click',imageHandler);
 
 
 }
