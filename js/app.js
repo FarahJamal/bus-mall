@@ -58,9 +58,11 @@ function generateRandomPic(){
     return randomIndex;               
                     
 }
-leftImgEl.addEventListener('click',imageHandler);
+/* leftImgEl.addEventListener('click',imageHandler);
 centerImgEl.addEventListener('click',imageHandler);
-rightImgEl.addEventListener('click',imageHandler);
+rightImgEl.addEventListener('click',imageHandler); */
+let container=document.getElementById('images');
+container.addEventListener('click',imageHandler);
 var roundNo;
 let buttonRound=document.getElementById('subA');
 buttonRound.onclick = function() { 
