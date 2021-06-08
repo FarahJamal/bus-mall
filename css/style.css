@@ -28,3 +28,50 @@ text-align: center;
 display: block;
 margin: 0 auto;
 }
+
+
+footer {
+  max-width: 1060px;
+  margin : 0 auto;
+}
+#select-graph {
+  margin: auto 0;
+  visibility: hidden;
+}
+
+footer a {
+  color: #000;
+  margin: 10px;
+  text-decoration: none;
+  padding: 4px 13px 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: 2px solid #000;
+  font-size: 30px;
+  font-weight: bold;
+}
+footer a:hover {
+  background-color: #aaa;
+}
+
+#myChart2,#myChart3,#myChart4,#myChart5 {
+  visibility: hidden;
+  
+
+}
+.container{
+  background-color: transparent;
+  margin:auto 0;
+  width: 100%;
+}
+.canvas-block {
+  display: block;
+  margin: 0px;
+}
+
+#next-button{
+  float: right;
+}
+#prev-button{
+  float: left;
+}
