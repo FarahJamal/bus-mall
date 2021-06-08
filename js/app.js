@@ -102,7 +102,7 @@ nextButton.addEventListener('click', nextGraph);
 // set graph to previous graph and jump to prev anchor
 function prevGraph() {
 if(graphIndex === 0) {
-graphIndex = 4;
+graphIndex = 5;
 } else {
 graphIndex--;
 }
@@ -112,7 +112,7 @@ location.href = '#prev-button';
 
 // set graph to next graph and jump to next anchor
 function nextGraph() {
-if(graphIndex === 4) {
+if(graphIndex === 5) {
 graphIndex = 0;
 } else {
 graphIndex++;
@@ -152,7 +152,7 @@ function displayImg(){
      right=generateRandomPic();
      center=generateRandomPic();
    
-    while(left === center || left === right || right===center || right===left || center ===right || center === left
+    while(left === center || left === right || right===center 
        || prevArr.includes(CategoryImg.allImg[left].filePath) 
        || prevArr.includes(CategoryImg.allImg[center].filePath) 
        || prevArr.includes(CategoryImg.allImg[right].filePath)){
@@ -303,27 +303,7 @@ function getSelectValue()
                   ]
                 }
             });
-            new Chart(percentageChart.getContext('2d'),{
-                type: 'bar',
-                data: {
-                  labels:arrOfName,
-                  datasets: [{
-                    label: '% of Times Picked',
-                    data: votes2,
-                    backgroundColor: 'green',
-                  }, {
-                    label: '# of Seen',
-                    data: shows2,
-                    backgroundColor:
-                      'rgba(200, 120, 132, 0.5)',
-                         
-                }
-                
-                ],
-                },
-                
-               
-              });
+        
 
               new Chart(percentageChart, {
                 type: 'pie',
