@@ -25,7 +25,7 @@ border-radius: 30px;
     border: #89C7E7 solid 3px;
   }
 img:hover{
-  animation: shake 0.5s;
+  opacity:100;
 }
   
   #div1{

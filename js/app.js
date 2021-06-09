@@ -240,16 +240,20 @@ pressCount+=1;
     if(round>=pressCount){
     if(event.target.id === 'left-img'){
         CategoryImg.allImg[left].votes++;
+
     }
     else if(event.target.id === 'center-img'){
         CategoryImg.allImg[center].votes++;
+
     }
     else if(event.target.id === 'right-img'){
         CategoryImg.allImg[right].votes++;
+
     }
     else{
         return;
     }
+    savingToLs();
 
     generateRandomPic();
     displayImg();
@@ -264,7 +268,6 @@ if(pressCount === round- 1){
         
         submitButton.disabled = true;
 
-        savingToLs();
         console.log(CategoryImg.allImg);
         displayResult();
         gettingChart();
@@ -430,6 +433,7 @@ function savingToLs(){
                   labels: arrOfName,
                   datasets: [
                     {
+                      label:'# of votes',
                       backgroundColor: rgb,
                       data: votes2,
                     },{
