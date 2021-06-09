@@ -4,18 +4,30 @@
 let leftImgEl=document.getElementById('left-img');
 let centerImgEl=document.getElementById('center-img');
 let rightImgEl=document.getElementById('right-img');
+let leftImgEl2=document.getElementById('left-img2');
+let centerImgEl2=document.getElementById('center-img2');
+let rightImgEl2=document.getElementById('right-img2');
+let leftImgEl3=document.getElementById('left-img3');
+let centerImgEl3=document.getElementById('center-img3');
+let rightImgEl3=document.getElementById('right-img3');
 let submitButton=document.getElementById('subB');
-let selectedValue = document.getElementById("list");
+let select = document.getElementById("list");
 let prevButton = document.getElementById('prev-button');
 let nextButton = document.getElementById('next-button');
 let ctx = document.getElementById('myChart');
-var percentageChart = document.getElementById('myChart2');
-var lineChart = document.getElementById('myChart3');
-var radarChart = document.getElementById('myChart4');
-var polarAreaChart = document.getElementById('myChart5');
+let percentageChart = document.getElementById('myChart2');
+let lineChart = document.getElementById('myChart3');
+let radarChart = document.getElementById('myChart4');
+let polarAreaChart = document.getElementById('myChart5');
+let rgb = [];
+let rgb2=[];
 
+for(var i = 0; i < 20; i++){
+    rgb.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+    rgb2.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
 
-
+}
+console.log(rgb);
 let arrOfName=[];
 let round=10;
 let imageNumber=0;
@@ -33,7 +45,7 @@ nextButton.addEventListener('click', nextGraph);
        ctx.style.visibility = 'visible';
       ctx.style.height = '530px';
       percentageChart.style.visibility = 'hidden';
-     percentageChart.height="0px";
+     percentageChart.style.height="0px";
     lineChart.style.visibility = 'hidden';
       lineChart.style.height = '0px';
     radarChart.style.visibility = 'hidden';
@@ -44,10 +56,10 @@ nextButton.addEventListener('click', nextGraph);
     case 1:
         document.getElementById('myChart').style.visibility = 'hidden';
         document.getElementById('myChart').style.height = '0px';
-        document.getElementById('myChart2').style.visibility = 'hidden';
-        document.getElementById('myChart2').style.height = '0px';
-        document.getElementById('myChart3').style.visibility = 'visible';
-        document.getElementById('myChart3').style.height = '530px';
+        document.getElementById('myChart2').style.visibility = 'visible';
+        document.getElementById('myChart2').style.height = '530px';
+        document.getElementById('myChart3').style.visibility = 'hidden';
+        document.getElementById('myChart3').style.height = '0px';
         document.getElementById('myChart4').style.visibility = 'hidden';
         document.getElementById('myChart4').style.height = '0px';
         document.getElementById('myChart5').style.visibility = 'hidden';
@@ -57,10 +69,10 @@ nextButton.addEventListener('click', nextGraph);
     case 2:
         document.getElementById('myChart').style.visibility = 'hidden';
         document.getElementById('myChart').style.height = '0px';
-        document.getElementById('myChart2').style.visibility = 'visible';
-        document.getElementById('myChart2').style.height = '530px';
-        document.getElementById('myChart3').style.visibility = 'hidden';
-        document.getElementById('myChart3').style.height = '0px';
+        document.getElementById('myChart2').style.visibility = 'hidden';
+        document.getElementById('myChart2').style.height = '0px';
+        document.getElementById('myChart3').style.visibility = 'visible';
+        document.getElementById('myChart3').style.height = '530px';
         document.getElementById('myChart4').style.visibility = 'hidden';
         document.getElementById('myChart4').style.height = '0px';
         document.getElementById('myChart5').style.visibility = 'hidden';
@@ -102,7 +114,7 @@ nextButton.addEventListener('click', nextGraph);
 // set graph to previous graph and jump to prev anchor
 function prevGraph() {
 if(graphIndex === 0) {
-graphIndex = 5;
+graphIndex = 4;
 } else {
 graphIndex--;
 }
@@ -112,7 +124,7 @@ location.href = '#prev-button';
 
 // set graph to next graph and jump to next anchor
 function nextGraph() {
-if(graphIndex === 5) {
+if(graphIndex === 4) {
 graphIndex = 0;
 } else {
 graphIndex++;
@@ -146,7 +158,8 @@ new CategoryImg(filesArr[x],`img/${filesArr[x]}.jpg`)
 let left,right,center=null;
 let prevLeft,prevRight,prevCenter=null;
 let prevArr=[];
-
+let selectedValue=3;
+let selectedString="";
 function displayImg(){
      left=generateRandomPic();
      right=generateRandomPic();
@@ -162,6 +175,8 @@ function displayImg(){
          
 }
 
+
+
 prevLeft=CategoryImg.allImg[left].filePath;
 prevRight=CategoryImg.allImg[right].filePath;
 prevCenter=CategoryImg.allImg[center].filePath;
@@ -175,13 +190,24 @@ CategoryImg.allImg[center].shows++;
 CategoryImg.allImg[right].shows++;
 
 
-
-//console.log(center," ", left, " ", right);
-
 }
 
 displayImg();
+/*select.onchange = function(){
+  selectedString = select.options[select.selectedIndex].value;
+  selectedValue=Number(selectedString);
+  console.log(selectedValue);
+  if(selectedValue === 6){
+    displayImg();
 
+  }
+  else if(selectedValue===9){
+    console.log('I am nine');
+  }
+  else{
+    console.log('I am three');
+  }
+}*/
 
 function generateRandomPic(){
     let randomIndex = Math.floor(Math.random() * CategoryImg.allImg.length);
@@ -233,18 +259,23 @@ pressCount+=1;
 if(pressCount === round- 1){
     submitButton.onclick = function() { 
         submitButton.disabled = false;
-        displayResult();
+
         document.getElementById('select-graph').style.visibility = 'visible';
-        gettingChart();
+        
         submitButton.disabled = true;
 
-    
+        savingToLs();
+        console.log(CategoryImg.allImg);
+        displayResult();
+        gettingChart();
     };
    
 /*     leftImgEl.removeEventListener('click',imageHandler);
 centerImgEl.removeEventListener('click',imageHandler);
 rightImgEl.removeEventListener('click',imageHandler); */
 container.removeEventListener('click',imageHandler);
+document.getElementById('subB').style.visibility='visible';
+
 
 
 }
@@ -252,29 +283,51 @@ container.removeEventListener('click',imageHandler);
 
 function displayResult(){
     let parrentEl=document.getElementById('unList');
-    let ulEl=document.createElement('ul');
-    parrentEl.appendChild(ulEl);
-    
+    let tableEl=document.createElement('table');
+    parrentEl.appendChild(tableEl);
+    votes2=[];
+    shows2=[];
+    var thEl=document.createElement('th');
+    thEl.textContent='total votes and shows result!';
+    tableEl.appendChild(thEl);
     for(var i=0;i<CategoryImg.allImg.length;i++){
+       
         votes2.push(CategoryImg.allImg[i].votes);
         shows2.push(CategoryImg.allImg[i].shows);
-    var liEl=document.createElement('li');
-    liEl.textContent=`${CategoryImg.allImg[i].name} had ${CategoryImg.allImg[i].votes} votes, and was seen ${CategoryImg.allImg[i].shows} times.`;
-    ulEl.appendChild(liEl);
+        
+    var trEl=document.createElement('tr');
+    tableEl.appendChild(trEl);
+    var tdEl=document.createElement('td');
+    trEl.appendChild(tdEl);
+    tdEl.textContent=`${CategoryImg.allImg[i].name} had ${CategoryImg.allImg[i].votes} votes, and was seen ${CategoryImg.allImg[i].shows} times.`;
+
     
 }
 
 }
-var text="";
-function getSelectValue()
-        {
-            selectedValue.onchange=function(){
-                 text= selectedValue.options[selectedValue.selectedIndex].value;
-            imageNumber=Number(text);
-            console.log(imageNumber);
+function savingToLs(){
+    let convertedArr = JSON.stringify(CategoryImg.allImg); 
+    localStorage.setItem('vote',convertedArr);
+    
+  }
+  
+  
+  function gettingOrdersFromLs(){
+    let data = localStorage.getItem('vote');
+    console.log(data);
+    //Null
+    let parsedOrder = JSON.parse(data);
+    console.log(parsedOrder);
+   
+    if(parsedOrder !== null){ // parsedOrder !== Null
+  
+      CategoryImg.allImg = parsedOrder;
+       
 
-            }
-        }
+
+    }
+  }
+
 
         //getSelectValue();
         //console.log(imageNumber);
@@ -288,15 +341,14 @@ function getSelectValue()
                     datasets: [{
                         label: '# of Votes',
                         data: votes2,
-                        backgroundColor: 
-                            'rgba(255, c, 132, 0.4)',
+                        backgroundColor: '#F7DD4F',
 
                         
                     },{
                       label: '# of Seen',
                       data: shows2,
                       backgroundColor:
-                        'rgba(200, 120, 132, 0.5)',
+                        '#89C7E7',
                         
                       
                   }
@@ -311,13 +363,15 @@ function getSelectValue()
                   labels: arrOfName,
                   datasets: [
                     {
-                      backgroundColor: 'yellow',
+                        label:'# of Votes',
+
+                      backgroundColor: rgb,
                       data: votes2,
                     },{
                         label: '# of Seen',
                         data: shows2,
-                        backgroundColor:
-                          'rgba(200, 120, 132, 0.5)',
+                        backgroundColor:rgb2,
+                          
                              
                     }
                   ],
@@ -331,14 +385,15 @@ function getSelectValue()
                 data: {
                   labels: arrOfName,
                   datasets: [
-                    {
-                      backgroundColor: 'yellow',
+                    {  
+                      label:'# of Votes',
+                      backgroundColor:  '#F7DD4F',
                       data: votes2,
                     },{
                         label: '# of Seen',
                         data: shows2,
                         backgroundColor:
-                          'rgba(200, 120, 132, 0.5)',
+                          '#89C7E7',
                              
                     }
                   ],
@@ -353,13 +408,14 @@ function getSelectValue()
                   labels: arrOfName,
                   datasets: [
                     {
-                      backgroundColor: 'yellow',
+                        label:'# of Votes',
+                      backgroundColor: '#F7DD4F',
                       data: votes2,
                     },{
                         label: '# of Seen',
                         data: shows2,
                         backgroundColor:
-                          'rgba(200, 120, 132, 0.5)',
+                          '#89C7E7',
                              
                     }
                   ],
@@ -374,13 +430,12 @@ function getSelectValue()
                   labels: arrOfName,
                   datasets: [
                     {
-                      backgroundColor: 'yellow',
+                      backgroundColor: rgb,
                       data: votes2,
                     },{
                         label: '# of Seen',
                         data: shows2,
-                        backgroundColor:
-                          'rgba(200, 120, 132, 0.5)',
+                        backgroundColor: rgb,
                              
                     }
                   ],
@@ -397,5 +452,4 @@ function getSelectValue()
         }
 
 
-
-       
+gettingOrdersFromLs();

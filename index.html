@@ -8,25 +8,50 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
+    
+    <center>
+        <h1>
+            <span style="color: #F2B92C;">Bus</span>  <span style="color:#00517D;">Mall</span>
+            
+        </h1>
+        
+            <img style="width: 20%;" src="https://www.animatedimages.org/data/media/425/animated-bus-image-0028.gif" 
+            border="0" alt="animated-bus-image-0028" />
+    </center>
     <div id="div1">
 
-        <input type="number" id="roundNo">
+        <input type="number" id="roundNo" placeholder="enter round Number- default is 25">
         <input type="submit" id="subA">
     </div>
-   
+   <!-- <select name="numberOfPics" id="list" >
+        <option value="3">3</option>
+        <option value="6">6</option>
+        <option value="9">9</option>
+    </select>-->
 
     <div id="images">
 <img src="" alt="" id="left-img" >
 <img src="" alt="" id="center-img">
 <img src="" alt="" id="right-img">
 <br><br><br>
-<input type="submit" id="subB">
     </div>
-    <select name="numberOfPics" id="list">
-        <option value="3">3</option>
-        <option value="6">6</option>
-        <option value="9">9</option>
-    </select>
+    <div class="center">
+        <input type="submit" id="subB">
+
+    </div>
+<div id="images2">
+        <img src="" alt="" id="left-img2" >
+        <img src="" alt="" id="center-img2">
+        <img src="" alt="" id="right-img2">
+        <br><br><br>
+            </div>
+<div id="image3">
+    <img src="" alt="" id="left-img3" >
+    <img src="" alt="" id="center-img3">
+     <img src="" alt="" id="right-img3">
+     
+                    </div>
 
 
     <div id="unList">
@@ -39,19 +64,23 @@
                 <h1 style="display: inline-block;">Select Graph</h1>
 
                 <a href="#next-button" id="next-button">&#8250;</a>
+                <div class="container">
+                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart2"></canvas>
+                    <canvas id="myChart3"></canvas>
+                    <canvas id="myChart4"></canvas>
+                    <canvas id="myChart5"></canvas>
+                </div>
               </div>
         
         </p>
   
-<div class="container">
-    <canvas id="myChart"></canvas>
-    <canvas id="myChart2"></canvas>
-    <canvas id="myChart3"></canvas>
-    <canvas id="myChart4"></canvas>
-    <canvas id="myChart5"></canvas>
-</div>
-    
 
+    
+<div id="footer">
+    <p>Author: Farah Jamal<br>
+        <a href="mailto:bus@mall.com">bus@mall.com</a></p>
+</div>
 </footer>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
